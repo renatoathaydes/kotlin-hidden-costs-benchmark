@@ -1,0 +1,16 @@
+
+### Java template
+*.class
+*.log
+*.jar
+*.war
+hs_err_pid*
+
+*.iml
+.idea/
+
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
