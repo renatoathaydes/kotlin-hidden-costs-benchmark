@@ -28,11 +28,11 @@ questions.
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.athaydes.kotlin</groupId>
-    <artifactId>benchmark</artifactId>
+    <artifactId>kotlin-hidden-costs-benchmark</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
 
-    <name>JMH Kotlin Benchmark</name>
+    <name>JMH Kotlin Hidden Costs Benchmark</name>
 
     <dependencies>
         <dependency>
