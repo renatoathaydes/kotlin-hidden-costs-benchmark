@@ -2,12 +2,14 @@ package com.athaydes.kotlin.part1;
 
 import java.util.function.ToIntFunction;
 
+import static com.athaydes.kotlin.part1.MyJavaClass.newInstance;
+
 /**
  * Translation of the Kotlin examples to Java.
  */
 public class JavaExamples {
 
-    public static int runJavaToIntFunction( Database db ) {
+    public static int runJavaLambda( Database db ) {
         int deletedRows = transaction( db, ( database ) ->
                 database.delete( "Customer", null, null ) );
 
@@ -24,27 +26,25 @@ public class JavaExamples {
             db.endTransaction();
         }
     }
+
+    public static String runPrivateConstructorFromStaticMethod() {
+        MyJavaClass myJavaClass = newInstance();
+        return myJavaClass.helloWorld();
+    }
 }
 
 class MyJavaClass {
-    private int hello = 0;
+
+    private static final String TAG = "TAG";
 
     private MyJavaClass() {
     }
 
-    public static MyJavaClass runPrivateConstructorFromStaticMethod() {
-        return newInstance();
+    public static String helloWorld() {
+        return TAG;
     }
 
     public static MyJavaClass newInstance() {
         return new MyJavaClass();
-    }
-}
-
-class MyJavaClass2 {
-    private static final String TAG = "TAG";
-
-    public static String helloWorld() {
-        return TAG;
     }
 }

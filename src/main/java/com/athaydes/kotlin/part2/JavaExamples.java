@@ -1,7 +1,8 @@
 package com.athaydes.kotlin.part2;
 
+import org.openjdk.jmh.logic.BlackHole;
+
 import java.util.function.IntUnaryOperator;
-import java.util.stream.IntStream;
 
 public class JavaExamples {
 
@@ -15,15 +16,18 @@ public class JavaExamples {
         return sumSquare.applyAsInt( 1 ) + sumSquare.applyAsInt( 2 );
     }
 
-    public static String sayHello( String who ) {
-        return "Hello " + who;
+    public static void sayHello( String who, BlackHole blackHole ) {
+        blackHole.consume( "Hello " + who );
     }
 
-    public static int[] runPrintDouble( int[] values ) {
-        return printDouble( values );
+    public static void runPrintDouble( BlackHole blackHole, int[] values ) {
+        printDouble( blackHole, values );
     }
 
-    public static int[] printDouble( int... values ) {
-        return IntStream.of( values ).map( it -> it * 2 ).toArray();
+    public static void printDouble( BlackHole blackHole, int... values ) {
+        for (int value : values) {
+            blackHole.consume( value );
+        }
     }
+
 }

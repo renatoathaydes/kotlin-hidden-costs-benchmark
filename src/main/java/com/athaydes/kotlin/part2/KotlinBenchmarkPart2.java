@@ -3,7 +3,11 @@ package com.athaydes.kotlin.part2;
 import org.openjdk.jmh.annotations.GenerateMicroBenchmark;
 import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.State;
+import org.openjdk.jmh.logic.BlackHole;
 
+/**
+ * https://medium.com/@BladeCoder/exploring-kotlins-hidden-costs-part-2-324a4a50b70
+ */
 public class KotlinBenchmarkPart2 {
 
     @State( Scope.Thread )
@@ -29,22 +33,22 @@ public class KotlinBenchmarkPart2 {
     }
 
     @GenerateMicroBenchmark
-    public String javaSayHello( TestState state ) {
-        return JavaExamples.sayHello( state.who );
+    public void javaSayHello( TestState state, BlackHole blackHole ) {
+        JavaExamples.sayHello( state.who, blackHole );
     }
 
     @GenerateMicroBenchmark
-    public String kotlinSayHello( TestState state ) {
-        return Kotlin_sourcesKt.sayHello( state.who );
+    public void kotlinSayHello( TestState state, BlackHole blackHole ) {
+        Kotlin_sourcesKt.sayHello( state.who, blackHole );
     }
 
     @GenerateMicroBenchmark
-    public int[] javaIntVarargs( TestState state ) {
-        return JavaExamples.runPrintDouble( state.intArray );
+    public void javaIntVarargs( BlackHole blackHole, TestState state ) {
+        JavaExamples.runPrintDouble( blackHole, state.intArray );
     }
 
     @GenerateMicroBenchmark
-    public int[] kotlinIntVarargs( TestState state ) {
-        return Kotlin_sourcesKt.runPrintDouble( state.intArray );
+    public void kotlinIntVarargs( BlackHole blackHole, TestState state ) {
+        Kotlin_sourcesKt.runPrintDouble( blackHole, state.intArray );
     }
 }

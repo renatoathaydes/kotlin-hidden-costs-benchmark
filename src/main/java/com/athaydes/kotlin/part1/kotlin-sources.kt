@@ -2,10 +2,7 @@ package com.athaydes.kotlin
 
 import com.athaydes.kotlin.part1.Database
 
-/**
- * Higher-order functions and Lambda expressions
- */
-fun runKotlinBoxedFunction(db: Database): Int {
+fun runKotlinLambda(db: Database): Int {
     val deletedRows = transaction(db) {
         it.delete("Customers", null, null)
     }
@@ -43,23 +40,17 @@ inline fun inlineTransaction(db: Database, body: (Database) -> Int): Int {
     }
 }
 
-fun runCompanionObjectCallToPrivateConstructor(): MyClass {
-    return MyClass.newInstance()
+fun runCompanionObjectCallToPrivateConstructor(): String {
+    val myClass = MyClass.newInstance()
+    return myClass.helloWorld()
 }
 
 class MyClass private constructor() {
 
-    private var hello = 0
-
-    companion object {
-        fun newInstance() = MyClass()
-    }
-}
-
-class MyClass2 {
-
     companion object {
         private val TAG = "TAG"
+
+        fun newInstance() = MyClass()
     }
 
     fun helloWorld() = TAG
