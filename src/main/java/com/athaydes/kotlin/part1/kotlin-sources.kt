@@ -1,6 +1,4 @@
-package com.athaydes.kotlin
-
-import com.athaydes.kotlin.part1.Database
+package com.athaydes.kotlin.part1
 
 fun runKotlinLambda(db: Database): Int {
     val deletedRows = transaction(db) {

@@ -1,7 +1,7 @@
 package com.athaydes.kotlin.part3
 
 import com.athaydes.kotlin.part3.JavaExamples.DelegatePropertyTest.someOperation
-import org.openjdk.jmh.logic.BlackHole
+import org.openjdk.jmh.infra.Blackhole
 import kotlin.reflect.KProperty
 
 class StringDelegate {
@@ -25,7 +25,7 @@ class Example {
     var p: String by StringDelegate()
 }
 
-fun runStringDelegateExample(blackHole: BlackHole) {
+fun runStringDelegateExample(blackHole: Blackhole) {
     val example = Example()
     blackHole.consume(example.p)
     blackHole.consume(example.p)
@@ -57,19 +57,19 @@ fun isBetweenNamesWithConstantRange(name: String): Boolean {
     return name in NAMES
 }
 
-fun rangeForEachMethod(blackHole: BlackHole) {
+fun rangeForEachMethod(blackHole: Blackhole) {
     (1..10).forEach {
         blackHole.consume(it)
     }
 }
 
-fun rangeForEachLoop(blackHole: BlackHole) {
+fun rangeForEachLoop(blackHole: Blackhole) {
     for (it in 1..10) {
         blackHole.consume(it)
     }
 }
 
-fun rangeForEachLoopWithStep1(blackHole: BlackHole) {
+fun rangeForEachLoopWithStep1(blackHole: Blackhole) {
     for (it in 1..10 step 1) {
         blackHole.consume(it)
     }
@@ -84,9 +84,9 @@ class SparseArray<out T>(val collection: List<T>) {
 }
 
 inline val SparseArray<*>.indices: IntRange
-    get() = 0..size() - 1
+    get() = 0 until size()
 
-fun printValuesUsingIndices(map: SparseArray<String>, blackHole: BlackHole) {
+fun printValuesUsingIndices(map: SparseArray<String>, blackHole: Blackhole) {
     for (i in map.indices) {
         blackHole.consume(map.valueAt(i))
     }
@@ -95,7 +95,7 @@ fun printValuesUsingIndices(map: SparseArray<String>, blackHole: BlackHole) {
 inline val SparseArray<*>.lastIndex: Int
     get() = size() - 1
 
-fun printValuesUsingLastIndexRange(map: SparseArray<String>, blackHole: BlackHole) {
+fun printValuesUsingLastIndexRange(map: SparseArray<String>, blackHole: Blackhole) {
     for (i in 0..map.lastIndex) {
         blackHole.consume(map.valueAt(i))
     }
