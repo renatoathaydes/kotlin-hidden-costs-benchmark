@@ -1,6 +1,7 @@
 package com.athaydes.kotlin.part2
 
-import org.openjdk.jmh.logic.BlackHole
+import org.openjdk.jmh.infra.Blackhole
+
 
 fun runLocalFunctionCapturingLocalVariable(a: Int): Int {
     return someMath(a)
@@ -22,13 +23,13 @@ fun someMath2(a: Int): Int {
     return sumSquare(a, 1) + sumSquare(a, 2)
 }
 
-fun sayHello(who: String, blackHole: BlackHole) = blackHole.consume("Hello $who")
+fun sayHello(who: String, blackHole: Blackhole) = blackHole.consume("Hello $who")
 
-fun runPrintDouble(blackHole: BlackHole, values: IntArray) {
+fun runPrintDouble(blackHole: Blackhole, values: IntArray) {
     printDouble(blackHole, *values)
 }
 
-fun printDouble(blackHole: BlackHole, vararg values: Int) {
+fun printDouble(blackHole: Blackhole, vararg values: Int) {
     for (value in values) {
         blackHole.consume(value)
     }
