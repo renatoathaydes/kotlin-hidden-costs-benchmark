@@ -11,7 +11,6 @@ import static java.util.concurrent.TimeUnit.MILLISECONDS;
  * https://medium.com/@BladeCoder/exploring-kotlins-hidden-costs-part-1-fbb9935d9b62
  */
 @State(Scope.Benchmark)
-@Warmup(iterations = 2, time = 1, timeUnit = MILLISECONDS)
 public class KotlinBenchmarkPart1 {
 
     private Database db = new Database();
